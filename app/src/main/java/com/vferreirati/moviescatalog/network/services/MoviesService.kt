@@ -12,7 +12,7 @@ interface MoviesService {
      * Obtém uma lista de filmes ordenada de acordo com o parâmetro de ordenação e do
      * gênero fornecido
      * */
-    @GET("Discover/Movie")
+    @GET("discover/movie")
     suspend fun queryMovies(
         @Query("language") language: String = "pt-BR",
         @Query("sort_by") sortBy: String = "popularity.desc",
@@ -24,7 +24,7 @@ interface MoviesService {
     /**
      * Obtém uma lista de filmes recomendados a partir do filme informado
      * */
-    @GET("Movie/{movieId}/recommendations")
+    @GET("movie/{movieId}/recommendations")
     suspend fun getMoviesRecommendation(
         @Path("movieId") movieId: Int,
         @Query("page") page: Int = 1,
