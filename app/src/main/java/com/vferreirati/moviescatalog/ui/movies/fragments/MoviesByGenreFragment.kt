@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.vferreirati.moviescatalog.R
 import com.vferreirati.moviescatalog.enums.MovieGenres
 import com.vferreirati.moviescatalog.extensions.injector
@@ -18,6 +19,7 @@ import com.vferreirati.moviescatalog.ui.movies.LoadingMovies
 import com.vferreirati.moviescatalog.ui.movies.MoviesListState
 import com.vferreirati.moviescatalog.ui.movies.MoviesLoaded
 import com.vferreirati.moviescatalog.ui.movies.adapters.MovieAdapter
+import com.vferreirati.moviescatalog.ui.movies.adapters.MovieShimmerAdapter
 import kotlinx.android.synthetic.main.fragment_movies_by_genre.*
 
 class MoviesByGenreFragment : Fragment(), MovieAdapter.MovieListener {
@@ -38,7 +40,7 @@ class MoviesByGenreFragment : Fragment(), MovieAdapter.MovieListener {
         movieGenre = MovieGenres.getByApiCode(genreCode)
 
         adapter.setListener(this)
-        moviesList.adapter = adapter
+        moviesList.adapter = MovieShimmerAdapter()
         moviesList.layoutManager = GridLayoutManager(context, 2)
 
         viewModel.state.observe(this, Observer { state -> mapStateToUI(state) })
@@ -53,14 +55,15 @@ class MoviesByGenreFragment : Fragment(), MovieAdapter.MovieListener {
     }
 
     private fun onLoadingMovies(state: LoadingMovies) {
-        if(state.movies.isEmpty()) {
-            // TODO: Exibir Skeleton loading
-        } else {
+        if(state.movies.isNotEmpty()) {
             pbLoadingMovies.visibility = View.VISIBLE
         }
     }
 
     private fun onMoviesLoaded(state: MoviesLoaded) {
+        if(moviesList.adapter != adapter)
+            moviesList.adapter = adapter
+
         pbLoadingMovies.visibility = View.GONE
         adapter.setMovies(state.movies)
     }
@@ -74,7 +77,7 @@ class MoviesByGenreFragment : Fragment(), MovieAdapter.MovieListener {
             errorLoadingLayout.visibility = View.VISIBLE
             moviesList.visibility = View.VISIBLE
         } else {
-            // TODO: Exibir snackbar informando o erro
+            Snackbar.make(rootView, state.errorMessage, Snackbar.LENGTH_SHORT).show()
         }
     }
 
