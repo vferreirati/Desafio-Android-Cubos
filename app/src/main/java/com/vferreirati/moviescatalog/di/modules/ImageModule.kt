@@ -3,15 +3,15 @@ package com.vferreirati.moviescatalog.di.modules
 import android.content.Context
 import com.squareup.picasso.OkHttp3Downloader
 import com.squareup.picasso.Picasso
+import com.vferreirati.moviescatalog.di.scopes.ApplicationScope
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 
 @Module(includes = [NetworkModule::class])
 object ImageModule {
 
     @Provides
-    @Singleton
+    @ApplicationScope
     fun picasso(
         context: Context,
         downloader: OkHttp3Downloader

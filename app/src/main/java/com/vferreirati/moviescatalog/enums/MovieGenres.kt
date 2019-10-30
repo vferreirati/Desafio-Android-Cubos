@@ -12,4 +12,14 @@ enum class MovieGenres {
         FANTASY -> "14"
         FICTION -> "878"
     }
+
+    companion object {
+        fun getByApiCode(apiCode: String) = when(apiCode) {
+            "28" -> ACTION
+            "18" -> DRAMA
+            "14" -> FANTASY
+            "878" -> FICTION
+            else -> throw IllegalArgumentException("Código de API inválido")
+        }
+    }
 }

@@ -14,7 +14,7 @@ class MoviesRepository @Inject constructor(
         return response.entries.map { m ->
             Movie(
                 id = m.entryId,
-                posterUrl = m.posterUrl,
+                posterUrl = "https://image.tmdb.org/t/p/w500${m.posterUrl}",
                 releaseDate = m.releaseDateString,
                 synopsis = m.synopsis,
                 title = m.title,
@@ -29,7 +29,7 @@ class MoviesRepository @Inject constructor(
         return response.recommendations.map { m ->
             Movie(
                 id = m.entryId,
-                posterUrl = m.posterUrl,
+                posterUrl = "https://image.tmdb.org/t/p/w500${m.posterUrl}",
                 releaseDate = m.releaseDateString,
                 synopsis = m.synopsis,
                 title = m.title,

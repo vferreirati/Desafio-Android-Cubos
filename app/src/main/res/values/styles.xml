@@ -13,4 +13,9 @@
         <item name="tabTextColor">@color/unselectedTextColor</item>
         <item name="tabIndicatorColor">@color/tabIndicatorColor</item>
     </style>
+
+    <style name="ErrorStyle">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">18sp</item>
+    </style>
 </resources>

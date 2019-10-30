@@ -6,6 +6,7 @@ import com.vferreirati.moviescatalog.di.modules.MoviesDatabaseModule
 import com.vferreirati.moviescatalog.di.scopes.ApplicationScope
 import com.vferreirati.moviescatalog.network.services.MoviesService
 import com.vferreirati.moviescatalog.ui.movies.MoviesViewModel
+import com.vferreirati.moviescatalog.ui.movies.adapters.MovieAdapter
 import dagger.BindsInstance
 import dagger.Component
 
@@ -19,4 +20,5 @@ interface ApplicationComponent {
     }
 
     fun moviesViewModel(): MoviesViewModel
+    fun movieAdapter(): MovieAdapter
 }
