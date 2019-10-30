@@ -69,4 +69,11 @@ dependencies {
 
     // Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    // ViewModel e LiveData
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+
+    // Extensões Fragment e Activity
+    implementation 'androidx.activity:activity-ktx:1.0.0'
+    implementation 'androidx.fragment:fragment-ktx:1.1.0'
 }
