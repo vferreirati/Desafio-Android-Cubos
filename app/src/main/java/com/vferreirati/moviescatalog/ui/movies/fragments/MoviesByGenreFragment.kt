@@ -53,12 +53,22 @@ class MoviesByGenreFragment : Fragment(), MovieAdapter.MovieListener {
     }
 
     private fun onLoadingMovies(state: LoadingMovies) {
-
+        if(state.movies.isEmpty()) {
+            // TODO: Exibir Skeleton loading
+        } else {
+            pbLoadingMovies.visibility = View.VISIBLE
+        }
     }
 
-    private fun onMoviesLoaded(state: MoviesLoaded) = adapter.setMovies(state.movies)
+    private fun onMoviesLoaded(state: MoviesLoaded) {
+        pbLoadingMovies.visibility = View.GONE
+        adapter.setMovies(state.movies)
+    }
 
     private fun onErrorLoadingMovies(state: ErrorLoadingMovies) {
+
+        pbLoadingMovies.visibility = View.GONE
+
         if(state.movies.isEmpty()) {
             txtErrorMessage.text = state.errorMessage
             errorLoadingLayout.visibility = View.VISIBLE
