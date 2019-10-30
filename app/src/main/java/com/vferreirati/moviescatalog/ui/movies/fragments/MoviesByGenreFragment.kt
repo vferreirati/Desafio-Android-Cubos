@@ -1,18 +1,18 @@
 package com.vferreirati.moviescatalog.ui.movies.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.vferreirati.moviescatalog.R
 import com.vferreirati.moviescatalog.enums.MovieGenres
 import com.vferreirati.moviescatalog.extensions.injector
 import com.vferreirati.moviescatalog.extensions.viewModel
+import com.vferreirati.moviescatalog.presentation.Movie
 import com.vferreirati.moviescatalog.ui.movies.ErrorLoadingMovies
 import com.vferreirati.moviescatalog.ui.movies.LoadingMovies
 import com.vferreirati.moviescatalog.ui.movies.MoviesListState
@@ -20,7 +20,7 @@ import com.vferreirati.moviescatalog.ui.movies.MoviesLoaded
 import com.vferreirati.moviescatalog.ui.movies.adapters.MovieAdapter
 import kotlinx.android.synthetic.main.fragment_movies_by_genre.*
 
-class MoviesByGenreFragment : Fragment() {
+class MoviesByGenreFragment : Fragment(), MovieAdapter.MovieListener {
 
     private val viewModel by viewModel { activity!!.injector.moviesViewModel() }
     private val adapter by lazy { activity!!.injector.movieAdapter() }
@@ -37,6 +37,7 @@ class MoviesByGenreFragment : Fragment() {
         val genreCode = arguments.getString(GENRE_ID_KEY, "")
         movieGenre = MovieGenres.getByApiCode(genreCode)
 
+        adapter.setListener(this)
         moviesList.adapter = adapter
         moviesList.layoutManager = GridLayoutManager(context, 2)
 
@@ -66,6 +67,10 @@ class MoviesByGenreFragment : Fragment() {
             // TODO: Exibir snackbar informando o erro
         }
     }
+
+    override fun onMovieSelected(movie: Movie) = Toast.makeText(context, "Selected movie: ${movie.title}", Toast.LENGTH_SHORT).show()
+
+    override fun onLoadNextPage() = viewModel.getMovies(movieGenre)
 
     companion object {
         private const val GENRE_ID_KEY = "GENRE_ID"

@@ -17,6 +17,7 @@ class MovieAdapter @Inject constructor(
 ) : RecyclerView.Adapter<MovieAdapter.MovieHolder>() {
 
     private val movies = mutableListOf<Movie>()
+    private lateinit var listener: MovieListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.movie_list_item, parent, false)
@@ -27,9 +28,15 @@ class MovieAdapter @Inject constructor(
 
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
         val movie = movies[position]
+
         holder.txtTitle.text = movie.title
         picasso.load(movie.posterUrl)
             .into(holder.imgPoster)
+        holder.itemView.setOnClickListener { listener.onMovieSelected(movie) }
+
+        val currentSize = movies.size
+        if(currentSize - position <= 6)
+            listener.onLoadNextPage()
     }
 
     fun setMovies(list: List<Movie>) {
@@ -38,8 +45,18 @@ class MovieAdapter @Inject constructor(
         notifyDataSetChanged()
     }
 
+    fun setListener(listener: MovieListener) {
+        this.listener = listener
+    }
+
     inner class MovieHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val txtTitle: AppCompatTextView = itemView.findViewById(R.id.txtMovieName)
         val imgPoster: AppCompatImageView = itemView.findViewById(R.id.imgMoviePoster)
     }
+
+    interface MovieListener {
+        fun onMovieSelected(movie: Movie)
+        fun onLoadNextPage()
+    }
 }
+

@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.vferreirati.moviescatalog.enums.MovieGenres
 import com.vferreirati.moviescatalog.ui.movies.fragments.MoviesByGenreFragment
 
-class MoviesByGenreAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class MoviesByGenrePageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getCount(): Int = 4
 

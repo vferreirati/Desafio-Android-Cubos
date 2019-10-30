@@ -1,5 +1,6 @@
 package com.vferreirati.moviescatalog.ui.movies
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,6 +21,12 @@ class MoviesViewModel @Inject constructor(
     val state get() = currentState as LiveData<MoviesListState>
 
     fun getMovies(genre: MovieGenres) {
+        val modelState = currentState.value
+        if(modelState is LoadingMovies)
+            return
+
+        Log.d("Movies", "Retrieving new movies")
+
         viewModelScope.launch {
             try {
                 currentState.postValue(LoadingMovies(loadedMovies))
