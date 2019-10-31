@@ -37,12 +37,13 @@ class DetailsActivity : AppCompatActivity(), Listener {
     private fun initViews() {
         setSupportActionBar(appToolbar)
         supportActionBar?.title = movie.title
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         adapter.setListener(this)
 
         picasso.load(movie.posterUrl)
             .into(imgMovieBackdrop)
-        txtMovieSynopsis.text = movie.synopsis
+        txtMovieSynopsis.text = if(movie.synopsis.isNotEmpty()) movie.synopsis else resources.getString(R.string.noSynnopsisProvided)
 
         relatedMoviesList.layoutManager = LinearLayoutManager(this@DetailsActivity, RecyclerView.HORIZONTAL, false)
     }
