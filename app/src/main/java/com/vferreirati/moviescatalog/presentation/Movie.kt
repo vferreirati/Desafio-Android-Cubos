@@ -1,7 +1,9 @@
 package com.vferreirati.moviescatalog.presentation
 
-import java.util.*
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Movie(
     val id: Int,
     val title: String,
@@ -9,4 +11,4 @@ data class Movie(
     val synopsis: String,
     val releaseDate: String,
     val voteAverage: Double
-)
+) : Parcelable
