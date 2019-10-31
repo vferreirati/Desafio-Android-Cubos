@@ -5,7 +5,8 @@ import com.squareup.picasso.Picasso
 import com.vferreirati.moviescatalog.di.modules.ImageModule
 import com.vferreirati.moviescatalog.di.modules.MoviesDatabaseModule
 import com.vferreirati.moviescatalog.di.scopes.ApplicationScope
-import com.vferreirati.moviescatalog.network.services.MoviesService
+import com.vferreirati.moviescatalog.ui.details.DetailsViewModel
+import com.vferreirati.moviescatalog.ui.details.adapters.RecommendationAdapter
 import com.vferreirati.moviescatalog.ui.movies.MoviesViewModel
 import com.vferreirati.moviescatalog.ui.movies.adapters.MovieAdapter
 import dagger.BindsInstance
@@ -21,6 +22,8 @@ interface ApplicationComponent {
     }
 
     fun moviesViewModel(): MoviesViewModel
+    fun detailsViewModel(): DetailsViewModel
     fun movieAdapter(): MovieAdapter
+    fun recommendationAdapter(): RecommendationAdapter
     fun picasso(): Picasso
 }

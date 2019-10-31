@@ -9,5 +9,5 @@
     <string name="noInternet">Sem acesso a internet</string>
     <string name="description_error_icon">Error icon</string>
     <string name="description">Descrição</string>
-    <string name="relatedMovies">Filmes semelhantes</string>
+    <string name="recommendedMovies">Filmes recomendados</string>
 </resources>
