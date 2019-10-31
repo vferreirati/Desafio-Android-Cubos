@@ -8,4 +8,6 @@
     <string name="description_movie_poster">Poster do filme</string>
     <string name="noInternet">Sem acesso a internet</string>
     <string name="description_error_icon">Error icon</string>
+    <string name="description">Descrição</string>
+    <string name="relatedMovies">Filmes semelhantes</string>
 </resources>

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
@@ -14,6 +13,7 @@ import com.vferreirati.moviescatalog.enums.MovieGenres
 import com.vferreirati.moviescatalog.extensions.injector
 import com.vferreirati.moviescatalog.extensions.viewModel
 import com.vferreirati.moviescatalog.presentation.Movie
+import com.vferreirati.moviescatalog.ui.details.DetailsActivity
 import com.vferreirati.moviescatalog.ui.movies.ErrorLoadingMovies
 import com.vferreirati.moviescatalog.ui.movies.LoadingMovies
 import com.vferreirati.moviescatalog.ui.movies.MoviesListState
@@ -40,7 +40,7 @@ class MoviesByGenreFragment : Fragment(), MovieAdapter.MovieListener {
         movieGenre = MovieGenres.getByApiCode(genreCode)
 
         adapter.setListener(this)
-        moviesList.adapter = MovieShimmerAdapter()
+        moviesList.adapter = MovieShimmerAdapter(R.layout.movie_list_shimmer_item, 10)
         moviesList.layoutManager = GridLayoutManager(context, 2)
 
         viewModel.state.observe(this, Observer { state -> mapStateToUI(state) })
@@ -81,7 +81,7 @@ class MoviesByGenreFragment : Fragment(), MovieAdapter.MovieListener {
         }
     }
 
-    override fun onMovieSelected(movie: Movie) = Toast.makeText(context, "Selected movie: ${movie.title}", Toast.LENGTH_SHORT).show()
+    override fun onMovieSelected(movie: Movie) = startActivity(DetailsActivity.getIntent(context!!, movie))
 
     override fun onLoadNextPage() = viewModel.getMovies(movieGenre)
 
