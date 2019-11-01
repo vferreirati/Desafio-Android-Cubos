@@ -9,6 +9,7 @@ import com.vferreirati.moviescatalog.ui.details.DetailsViewModel
 import com.vferreirati.moviescatalog.ui.details.adapters.RecommendationAdapter
 import com.vferreirati.moviescatalog.ui.movies.MoviesViewModel
 import com.vferreirati.moviescatalog.ui.movies.adapters.MovieAdapter
+import com.vferreirati.moviescatalog.ui.search.SearchMoviesViewModel
 import dagger.BindsInstance
 import dagger.Component
 
@@ -23,6 +24,7 @@ interface ApplicationComponent {
 
     fun moviesViewModel(): MoviesViewModel
     fun detailsViewModel(): DetailsViewModel
+    fun searchMoviesViewModel(): SearchMoviesViewModel
     fun movieAdapter(): MovieAdapter
     fun recommendationAdapter(): RecommendationAdapter
     fun picasso(): Picasso

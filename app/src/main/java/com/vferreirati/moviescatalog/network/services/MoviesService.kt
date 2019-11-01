@@ -30,4 +30,10 @@ interface MoviesService {
         @Query("page") page: Int = 1,
         @Query("language") language: String = "pt-BR"
     ): RecommendationResponse
+
+    @GET("search/movie")
+    suspend fun searchMovies(
+        @Query("query") query: String,
+        @Query("language") language: String = "pt-BR"
+    ) : QueryResponse
 }

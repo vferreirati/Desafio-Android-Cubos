@@ -11,4 +11,7 @@
     <string name="description">Descrição</string>
     <string name="recommendedMovies">Filmes recomendados</string>
     <string name="noSynnopsisProvided">Nenhuma sinopse fornecida</string>
+    <string name="searchMovies">Pesquisar filmes</string>
+    <string name="exampleMadMax">Mad Max</string>
+    <string name="noMoviesFound">Nenhum filme encontrado</string>
 </resources>
