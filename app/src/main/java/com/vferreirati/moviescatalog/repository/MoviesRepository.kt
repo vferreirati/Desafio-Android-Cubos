@@ -28,9 +28,7 @@ class MoviesRepository @Inject constructor(
     private fun mapDomainToPresentation(movieEntry: MovieEntry) : Movie = Movie(
         id = movieEntry.entryId,
         posterUrl = "https://image.tmdb.org/t/p/w500${movieEntry.posterUrl}",
-        releaseDate = movieEntry.releaseDateString,
         synopsis = movieEntry.synopsis,
-        title = movieEntry.title,
-        voteAverage = movieEntry.voteAverage
+        title = movieEntry.title
     )
 }

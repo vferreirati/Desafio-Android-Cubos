@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.vferreirati.moviescatalog.R
@@ -30,8 +31,11 @@ class MovieAdapter @Inject constructor(
         val movie = movies[position]
 
         holder.txtTitle.text = movie.title
-        picasso.load(movie.posterUrl)
-            .into(holder.imgPoster)
+        if(movie.posterUrl != null)
+            picasso.load(movie.posterUrl)
+                .into(holder.imgPoster)
+        else
+            holder.imgPoster.setImageDrawable(ContextCompat.getDrawable(holder.itemView.context, R.drawable.ic_movie_poster_placeholder))
         holder.itemView.setOnClickListener { listener.onMovieSelected(movie) }
 
         val currentSize = movies.size

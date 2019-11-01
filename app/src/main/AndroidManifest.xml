@@ -13,9 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.search.SearchMoviesActivity"></activity>
-        <activity
-            android:name=".ui.details.DetailsActivity"
-            android:parentActivityName=".ui.movies.MoviesActivity" />
+        <activity android:name=".ui.details.DetailsActivity" />
         <activity
             android:name=".ui.movies.MoviesActivity"
             android:launchMode="singleTop">

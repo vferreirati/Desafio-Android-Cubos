@@ -1,5 +1,6 @@
 package com.vferreirati.moviescatalog.ui.search
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,13 +17,19 @@ class SearchMoviesViewModel @Inject constructor(
     val state get() = currentState as LiveData<SearchState>
 
     fun searchMovies(query: String) {
+        Log.e("Victor", "Search Called")
         viewModelScope.launch {
             currentState.postValue(SearchingMovies())
 
             try {
-                val result = moviesRepository
+                val result = moviesRepository.searchMovies(query)
+                if(result.isEmpty())
+                    currentState.postValue(NoMoviesFound())
+                else
+                    currentState.postValue(MoviesFound(result))
 
             } catch (t: Throwable) {
+                t.printStackTrace()
                 currentState.postValue(ErrorSearchingMovies("Ocorreu um erro ao realizar a busca, verifique sua conexão com a internet"))
             }
         }
