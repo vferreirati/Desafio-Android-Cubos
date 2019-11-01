@@ -7,7 +7,7 @@
   <img src="/media/Details_2.png" width="200" />
 </p>
 
-Aplicação Nativa Android escrita com Kotlin e ❤️
+Aplicação Nativa Android escrita com Kotlin, MVVM, e ❤️
 
 ### Funcionalidades
 - Listagem de filmes por principais categorias
