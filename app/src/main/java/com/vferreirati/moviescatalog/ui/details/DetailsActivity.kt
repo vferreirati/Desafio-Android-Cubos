@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -69,6 +70,13 @@ class DetailsActivity : AppCompatActivity(), Listener {
     }
 
     override fun onRecommendationSelected(movie: Movie) = startActivity(getIntent(this@DetailsActivity, movie))
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == android.R.id.home)
+            finish()
+
+        return super.onOptionsItemSelected(item)
+    }
 
     companion object {
         private const val MOVIE_EXTRA = "com.vferreirati.moviescatalog.ui.details.MOVIE"

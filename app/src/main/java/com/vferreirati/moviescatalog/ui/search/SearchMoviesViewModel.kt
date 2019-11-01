@@ -1,6 +1,5 @@
 package com.vferreirati.moviescatalog.ui.search
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,7 +16,6 @@ class SearchMoviesViewModel @Inject constructor(
     val state get() = currentState as LiveData<SearchState>
 
     fun searchMovies(query: String) {
-        Log.e("Victor", "Search Called")
         viewModelScope.launch {
             currentState.postValue(SearchingMovies())
 
